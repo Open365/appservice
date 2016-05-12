@@ -1,0 +1,25 @@
+{
+  "name": "appservice",
+  "version": "0.0.1",
+  "description": "Service to request containers for the user",
+  "main": "eyeos-appservice.js",
+  "author": "eyeOS",
+  "homepage": "http://www.eyeos.com",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "express": "^4.12.2",
+    "eyeos-bustohttp": "*",
+    "eyeos-auth": "*",
+    "eyeos-mongo": "0.0.50",
+    "eyeos-service-ready-notify": "*",
+    "eyeos-virtual-application": "*",
+    "log2out": "*",
+    "request": "^2.67.0",
+    "maxmind-db-reader": "*"
+  },
+  "microservices": [
+    "rabbit.service.consul:5672",
+    "mongo.service.consul:27017"
+  ],
+  "license": "AGPL-3.0"
+}
