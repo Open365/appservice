@@ -167,20 +167,26 @@ Server.prototype.start = function () {
 
 Server.prototype.setLocalisation = function (appInfo, ipAddress) {
 
+    // Set default values
+    appInfo.continent = 'default';
+    appInfo.country = 'default';
+
     this.logger.debug('Getting localisation info for IP: ' + ipAddress);
     var continents = mmdbreader.openSync('/var/service/bin/GeoLite2-Country.mmdb');
     var geodata = continents.getGeoDataSync(ipAddress);
     if (geodata) {
         this.logger.debug("Geodata: " + geodata);
-        var continent = geodata.continent.code;
-        var country = geodata.country.iso_code || geodata.registered_country.iso_code;
-        this.logger.debug('IP ' + ipAddress + ' is from ' + country + '(' + continent + ')');
-        appInfo.continent = continent;
-        appInfo.country = country;
-    } else {
-        this.logger.debug("No geodata!");
-        appInfo.continent = 'default';
-        appInfo.country = 'default';
+        // Get continent
+        if (geodata.continent && geodata.continent.code) {
+            appInfo.continent = geodata.continent.code;
+        }
+        //Get country
+        if (geodata.country && geodata.country.iso_code) {
+            appInfo.country = geodata.country.iso_code;
+        } else if (geodata.registered_country && geodata.registered_country.iso_code) {
+            appInfo.country = geodata.registered_country.iso_code;
+        }
+        this.logger.debug('IP ' + ipAddress + ' is from ' + appInfo.country + '(' + appInfo.continent + ')');
     }
     return appInfo;
 };
