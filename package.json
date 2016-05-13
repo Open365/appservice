@@ -10,7 +10,7 @@
     "express": "^4.12.2",
     "eyeos-bustohttp": "*",
     "eyeos-auth": "*",
-    "eyeos-mongo": "0.0.50",
+    "eyeos-mongo": "*",
     "eyeos-service-ready-notify": "*",
     "eyeos-virtual-application": "*",
     "log2out": "*",
