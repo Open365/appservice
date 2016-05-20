@@ -151,7 +151,7 @@ Server.prototype.start = function () {
                     console.log('Received response from application launcher:', dockerInfo);
                     response.end(JSON.stringify(dockerInfo));
                 }
-            }, self.settings.exchangeCreation);
+            });
         })
     }
 
