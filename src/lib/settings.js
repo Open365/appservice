@@ -37,7 +37,6 @@ var getHosts = function (hostsEnv) {
 };
 
 var settings = {
-    exchangeCreation: environment.EYEOS_APPSERVICE_EXCHANGE_CREATION === 'true',
     retryTimeout: 1000, //miliseconds
     httpServer: {
         path: '/appservice/v1/',
