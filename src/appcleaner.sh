@@ -1,4 +1,4 @@
-#!/bin/ash
+#!/bin/sh
 CLEAN_INTERVAL=${CLEAN_INTERVAL:-"30"}
 while :
 do
