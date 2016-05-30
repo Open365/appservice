@@ -108,6 +108,7 @@ Server.prototype.start = function () {
             imap_host: process.env.EYEOS_IMAP_HOST,
             smtp_host: process.env.EYEOS_SMTP_HOST,
             use_bind_mount_for_libraries: self.settings.use_bind_mount_for_libraries,
+            enable_libreoffice_autosave: self.settings.enable_libreoffice_autosave,
             amqpBusHost: self.settings.amqpServer.host,
             amqpBusPort: self.settings.amqpServer.port,
             amqpBusUser: self.settings.amqpServer.login,

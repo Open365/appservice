@@ -61,6 +61,7 @@ var settings = {
     spiceHost: environment.APPSERVICE_SPICE_HOST || '127.0.0.1',
     security_mode: environment.APPSERVICE_SECURITY_MODE || 'unsecure',
     use_bind_mount_for_libraries: environment.USE_BIND_MOUNT_FOR_LIBRARIES || '',
+    enable_libreoffice_autosave: environment.OPEN365_ENABLE_LIBREOFFICE_AUTOSAVE || '',
     mysql: {
         host: environment.APPSERVICE_MYSQL_HOST || '127.0.0.1',
         user_salt: environment.EYEOS_USER_SALT
