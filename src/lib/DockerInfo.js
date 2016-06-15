@@ -53,9 +53,17 @@ DockerInfo.prototype.addDockerInfo = function (appInfo, dockerHosts) {
     appInfo.dockerTLSVerify = dockerHostInfo.tlsVerify || '';
     appInfo.dockerMachineName = dockerHostInfo.machineName || '';
 
-    // If distributed websockify is enabled, we need to set the wsHost value
+    // If distributed websockify is enabled, we need to set wsHost and wsPort
     if (settings.multidockerConfig.enabledDistributedWS) {
-        appInfo.wsHost = dockerHostInfo.wsHost || url.parse(dockerHostInfo.host).hostname;
+        if (dockerHostInfo.wsHost) {
+            var wsParsed = url.parse(dockerHostInfo.wsHost);
+            appInfo.wsHost = wsParsed.hostname;
+            if (wsParsed.port) {
+                appInfo.wsPort = wsParsed.port;
+            }
+        } else {
+            appInfo.wsHost = url.parse(dockerHostInfo.host).hostname;
+        }
         console.log('Setting websockify host to ' + appInfo.wsHost);
     }
     return appInfo;
