@@ -61,7 +61,7 @@ Server.prototype.start = function () {
             return;
         }
         console.log('USERNAME:', username);
-        var parseUrl = url.parse(request.url);
+        var parseUrl = url.parse(request.url, true);
         var parts = parseUrl.pathname.split('/').slice(3);
         var width = "";
         var height = "";
@@ -70,17 +70,9 @@ Server.prototype.start = function () {
         var app = parts[0];
         var token = parts[1];
 
-        if (parseUrl.search) {
-            var search = parseUrl.search.substr(1, parseUrl.search.length - 1);
-            var parameters = search.split("&");
-            var items = {};
-            var aux;
-            parameters.forEach(function (param) {
-                aux = param.split('=');
-                items[aux[0]] = aux[1];
-            });
-            width  = items.width;
-            height  = items.height;
+        if (parseUrl.query) {
+            width = parseUrl.query.width;
+            height = parseUrl.query.height;
         }
 
 
@@ -117,6 +109,19 @@ Server.prototype.start = function () {
             width: width,
             height: height
         };
+
+        if (settings.dockerTagEnabled) {
+            parseUrl = url.parse(request.url, true);
+            console.log('Docker tag is enabled.');
+            var tag = 'latest';
+            if (parseUrl.query && parseUrl.query.tag) {
+                console.log('TENGO UJN TAG!!', parseUrl.query.tag);
+                tag = parseUrl.query.tag;
+            }
+            console.log('Using', tag, 'tag.');
+            appInfo.tag = tag;
+        }
+
 
         console.log('Multidocker enabled: ' + self.settings.multidockerConfig.enabled);
         if (self.settings.multidockerConfig.enabled) {

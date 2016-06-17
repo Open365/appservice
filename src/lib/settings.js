@@ -79,7 +79,8 @@ var settings = {
             machineName: environment.MACHINE_NAME || ''
         },
         hosts: hostsInfo
-    }
+    },
+    dockerTagEnabled: environment.DOCKER_TAG_ENABLED === 'true'
 };
 
 if (!settings.mysql.user_salt) {
