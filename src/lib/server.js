@@ -115,7 +115,6 @@ Server.prototype.start = function () {
             console.log('Docker tag is enabled.');
             var tag = 'latest';
             if (parseUrl.query && parseUrl.query.tag) {
-                console.log('TENGO UJN TAG!!', parseUrl.query.tag);
                 tag = parseUrl.query.tag;
             }
             console.log('Using', tag, 'tag.');
