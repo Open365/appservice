@@ -69,12 +69,13 @@ Server.prototype.start = function () {
         parts = temp.split('/token/');
         var app = parts[0];
         var token = parts[1];
+        var tag;
 
         if (parseUrl.query) {
             width = parseUrl.query.width;
             height = parseUrl.query.height;
+            tag = parseUrl.query.tag || 'latest';
         }
-
 
         try {
             app = JSON.parse(decodeURIComponent(app));
@@ -107,20 +108,9 @@ Server.prototype.start = function () {
             amqpBusPass: self.settings.amqpServer.passcode,
             webDAVHost: self.settings.webdav.host,
             width: width,
-            height: height
+            height: height,
+            tag: tag
         };
-
-        if (settings.dockerTagEnabled) {
-            parseUrl = url.parse(request.url, true);
-            console.log('Docker tag is enabled.');
-            var tag = 'latest';
-            if (parseUrl.query && parseUrl.query.tag) {
-                tag = parseUrl.query.tag;
-            }
-            console.log('Using', tag, 'tag.');
-            appInfo.tag = tag;
-        }
-
 
         console.log('Multidocker enabled: ' + self.settings.multidockerConfig.enabled);
         if (self.settings.multidockerConfig.enabled) {
