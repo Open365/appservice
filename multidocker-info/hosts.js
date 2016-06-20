@@ -28,26 +28,26 @@ var hostsInfo = {
         host: 'tcp://1.1.1.1:444',
         tlsVerify: 0,
         machineName: 'docker-machine',
-        wsHost: '9.9.9.9'
+        wsHost: 'wss://9.9.9.9'
     }, {
         host: 'tcp://2.2.2.2:444',
         tlsVerify: 0,
-        wsHost: '9.9.9.9'
+        wsHost: 'wss://9.9.9.9'
     }],
     'US': [{
         host: 'tcp://3.3.3.3:444',
-        wsHost: '5.5.5.5'
+        wsHost: 'wss://5.5.5.5:5555'
     }, {
         host: 'tcp://4.4.4.4:444',
         tlsVerify: 0,
         machineName: 'docker-machine',
-        wsHost: '8.8.8.8'
+        wsHost: 'wss://8.8.8.8:443'
     }],
     'defaultValues': [{
         host: 'tcp://5.5.5.5:444',
         tlsVerify: 0,
         machineName: 'docker-machine',
-        wsHost: '10.10.10.10'
+        wsHost: 'wss://10.10.10.10:4430'
     }, {
         host: 'tcp://6.6.6.6:444'
     }]*/

@@ -61,7 +61,7 @@ Server.prototype.start = function () {
             return;
         }
         console.log('USERNAME:', username);
-        var parseUrl = url.parse(request.url);
+        var parseUrl = url.parse(request.url, true);
         var parts = parseUrl.pathname.split('/').slice(3);
         var width = "";
         var height = "";
@@ -69,20 +69,13 @@ Server.prototype.start = function () {
         parts = temp.split('/token/');
         var app = parts[0];
         var token = parts[1];
+        var tag;
 
-        if (parseUrl.search) {
-            var search = parseUrl.search.substr(1, parseUrl.search.length - 1);
-            var parameters = search.split("&");
-            var items = {};
-            var aux;
-            parameters.forEach(function (param) {
-                aux = param.split('=');
-                items[aux[0]] = aux[1];
-            });
-            width  = items.width;
-            height  = items.height;
+        if (parseUrl.query) {
+            width = parseUrl.query.width;
+            height = parseUrl.query.height;
+            tag = parseUrl.query.tag || 'latest';
         }
-
 
         try {
             app = JSON.parse(decodeURIComponent(app));
@@ -115,7 +108,8 @@ Server.prototype.start = function () {
             amqpBusPass: self.settings.amqpServer.passcode,
             webDAVHost: self.settings.webdav.host,
             width: width,
-            height: height
+            height: height,
+            tag: tag
         };
 
         console.log('Multidocker enabled: ' + self.settings.multidockerConfig.enabled);

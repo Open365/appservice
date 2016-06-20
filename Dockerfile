@@ -10,8 +10,7 @@ CMD eyeos-run-server --serf /var/service/src/eyeos-appservice.js
 
 COPY . ${InstallationDir}
 
-RUN apk update && \
-    /scripts-base/buildDependencies.sh --production --install && \
+RUN /scripts-base/buildDependencies.sh --production --install && \
     curl -L http://get.docker.com/builds/Linux/x86_64/docker-1.11.1.tgz -o /docker.tgz && \
     cd / && \
     tar -xvzf docker.tgz && \
