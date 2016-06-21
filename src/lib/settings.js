@@ -63,11 +63,11 @@ var settings = {
     use_bind_mount_for_libraries: environment.USE_BIND_MOUNT_FOR_LIBRARIES || '',
     enable_libreoffice_autosave: environment.OPEN365_ENABLE_LIBREOFFICE_AUTOSAVE || '',
     mysql: {
-        host: environment.APPSERVICE_MYSQL_HOST || '127.0.0.1',
+        host: environment.APPSERVICE_MYSQL_HOST || 'mysql.service.consul',
         user_salt: environment.EYEOS_USER_SALT
     },
     webdav: {
-        host: environment.APPSERVICE_WEBDAV_HOST || '127.0.0.1'
+        host: environment.APPSERVICE_WEBDAV_HOST || 'seafile.service.consul'
     },
     multidockerConfig: {
         enabled: environment.ENABLE_LOCALISATION === 'true' || false,
