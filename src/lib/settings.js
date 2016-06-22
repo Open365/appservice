@@ -67,7 +67,7 @@ var settings = {
         user_salt: environment.EYEOS_USER_SALT
     },
     webdav: {
-        host: environment.APPSERVICE_WEBDAV_HOST || 'seafile.service.consul'
+        host: environment.APPSERVICE_WEBDAV_HOST || 'seafileserver.service.consul'
     },
     multidockerConfig: {
         enabled: environment.ENABLE_LOCALISATION === 'true' || false,
